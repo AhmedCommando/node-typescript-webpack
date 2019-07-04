@@ -3,7 +3,6 @@
         "module": "es6",
         // args of declared functions should always have typing or at least any as a type.
         "noImplicitAny": true,
-        "removeComments": true,
         "target": "es5",
         "outDir": "./build/",
         "sourceMap": true,

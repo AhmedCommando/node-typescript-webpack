@@ -11,22 +11,23 @@ const {
 
 module.exports = {
   entry: './src/bin/www.ts',
+  target: 'node',
   mode: NODE_ENV,
   watch: NODE_ENV === 'development',
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js'
+    filename: '[id].bundle.js'
   },
   resolve: {
     extensions: ['.ts', '.js'],
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin(),
     // to be run after every build
     new WebpackShellPlugin({
       onBuildEnd: ['yarn run:dev']
     }),
-    new ForkTsCheckerWebpackPlugin()
   ],
   module: {
     rules: [

@@ -5,16 +5,16 @@
   "main": "./src/bin/www.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf ./build",
+    "clean": "rimraf ./build/* && rimraf ./sys_config/logs/*",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "build": "webpack",
+    "build": "yarn clean && yarn lint && webpack --watch",
     "start:dev": "NODE_ENV=development webpack",
-    "run:dev": "pm2 start build/index.js sys_config/pm2.processes.config.js",
+    "run:dev": "pm2 start sys_config/pm2.processes.config.js --watch",
     "start:prod": "pm2 start build/bin/www.js sys_config/pm2.processes.config.js --env production --watch",
     "start:staging": "pm2 start build/bin/www.js sys_config/pm2.processes.config.js --env staging --watch",
     "monitor": "pm2 monit",
     "logs": "pm2 logs api-rest --lines 2000",
-    "stop:dev": "pm2 delete api-rest"
+    "stop:dev": "pm2 delete api-rest && yarn clean"
   },
   "keywords": [
     "nodejs",
@@ -54,6 +54,7 @@
   "dependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/express": "^4.17.0",
+    "@types/node": "^12.0.12",
     "body-parser": "^1.19.0",
     "debug": "^4.1.1",
     "express": "^4.17.1"
