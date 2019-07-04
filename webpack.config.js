@@ -10,7 +10,7 @@ const {
 } = process.env;
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/bin/www.ts',
   mode: NODE_ENV,
   watch: NODE_ENV === 'development',
   externals: [nodeExternals()],
