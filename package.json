@@ -11,7 +11,8 @@
     "start:prod": "pm2 start build/index.js sys_config/pm2.processes.config.js --env production --watch",
     "start:staging": "pm2 start build/index.js sys_config/pm2.processes.config.js --env staging --watch",
     "monitor": "pm2 monit",
-    
+    "logs": "pm2 logs api-rest --lines 2000",
+    "stop:dev": "pm2 delete api-rest"
   },
   "keywords": [
     "nodejs",
@@ -20,8 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/AhmedCommando/node-typescript-webpack",
-
+    "url": "https://github.com/AhmedCommando/node-typescript-webpack"
   },
   "author": "Ahmed Khalil Bejaoui",
   "license": "MIT",
