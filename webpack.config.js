@@ -17,17 +17,16 @@ module.exports = {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[id].bundle.js'
+    filename: '[name].bundle.js'
   },
   resolve: {
     extensions: ['.ts', '.js'],
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
-    // to be run after every build
     new WebpackShellPlugin({
-      onBuildEnd: ['yarn run:dev']
-    }),
+      onBuildEnd: (NODE_ENV === 'development') ? ['yarn run:dev'] : ['yarn run:prod']
+    })
   ],
   module: {
     rules: [
@@ -37,8 +36,8 @@ module.exports = {
           {
             loader: 'ts-loader',
             options: {
-              configFile: NODE_ENV !== 'development' ? 'tsconfig.prod.json' : 'tsconfig.json',
-              transpileOnly: true
+              configFile: NODE_ENV === 'development' ? 'tsconfig.json' : 'tsconfig.prod.json',
+              transpileOnly: true // and we use ForkTsCheckerWebpackPlugin for type checking
             }
           }
         ],

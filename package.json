@@ -5,21 +5,23 @@
   "main": "./src/bin/www.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rimraf ./build/* && rimraf ./sys_config/logs/*",
+    "clean": "rimraf ./build/* && rimraf ./logs/*",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "build": "yarn clean && yarn lint && webpack --watch",
     "start:dev": "NODE_ENV=development yarn build",
-    "run:dev": "pm2 start sys_config/pm2.processes.config.js",
-    "start:prod": "pm2 start build/bin/www.js sys_config/pm2.processes.config.js --env production --watch",
-    "start:staging": "pm2 start build/bin/www.js sys_config/pm2.processes.config.js --env staging --watch",
+    "run:dev": "pm2 start ./config/pm2/pm2-dev-process.config.js",
+    "start:prod": "NODE_ENV=production yarn build",
+    "run:prod": "pm2 start ./config/pm2/pm2-prod-process.config.js",
     "monitor": "pm2 monit",
     "logs": "pm2 logs api-rest --lines 2000",
-    "stop:dev": "pm2 delete api-rest && yarn clean"
+    "stop": "pm2 delete api-rest && yarn clean"
   },
   "keywords": [
     "nodejs",
     "typescript",
-    "webpack"
+    "pm2",
+    "webpack",
+    "winston logger"
   ],
   "repository": {
     "type": "git",

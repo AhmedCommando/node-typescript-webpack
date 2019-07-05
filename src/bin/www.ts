@@ -1,6 +1,6 @@
 import * as http from 'http';
 
-import logger from '../config/winston-logger';
+import logger from '../utils/winston-logger';
 import App from '../index';
 
 const server = http.createServer(App);
@@ -42,7 +42,6 @@ const onListening = () => {
   const addr = server.address();
   const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
   logger.info(`Listening on ${bind}`);
-  logger.warn(`Mode: ${process.env.NODE_ENV}`);
 };
 
 server.listen(port);
