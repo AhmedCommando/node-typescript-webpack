@@ -1,11 +1,10 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import * as path from 'path';
 
 // Creates and configures an ExpressJS web server.
 class App {
   // ref to Express instance
-  public express: express.Application;
+  express: express.Application;
 
   // Run configuration methods on the Express instance.
   constructor() {
@@ -28,13 +27,14 @@ class App {
      * API endpoints */
     const router = express.Router();
     // placeholder route handler
-    router.get('/', (req, res, next) => {
+    router.get('/', (req: express.Request, res: express.Response, next: {}) => {
       res.json({
-        message: 'Hello World!',
+        message: 'Hello World agaaain!'
       });
     });
     this.express.use('/', router);
   }
+
 }
 
 export default new App().express;

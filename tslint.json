@@ -1,4 +1,6 @@
 {
+    "defaultSeverity": "warning",
+    "project": "./tsconfig.json",
     "extends": [
       "tslint-eslint-rules"
     ],
@@ -171,40 +173,6 @@
         "check-separator",
         "check-type",
         "check-module"
-      ],
-      // Codelyzer
-      "directive-selector": [
-        true,
-        "attribute",
-        "$your-selector$",
-        "camelCase"
-      ],
-      "component-selector": [
-        true,
-        "element",
-        "$your-selector$",
-        "kebab-case"
-      ],
-      "use-input-property-decorator": true,
-      "use-output-property-decorator": true,
-      "use-host-property-decorator": true,
-      "no-input-rename": true,
-      "no-output-rename": true,
-      "use-life-cycle-interface": true,
-      "use-pipe-transform-interface": true,
-      "component-class-suffix": true,
-      "directive-class-suffix": true,
-      "angular-whitespace": [
-        true,
-        "check-interpolation"
-      ],
-      "banana-in-box": true,
-      "templates-no-negated-async": true,
-      "no-attribute-parameter-decorator": true,
-      "no-forward-ref": false,
-      "object-curly-spacing": [
-        true,
-        "always"
       ]
     }
   }
