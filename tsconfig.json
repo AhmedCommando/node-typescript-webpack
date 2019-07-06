@@ -1,18 +1,20 @@
 {
     "compilerOptions": {
         "module": "es6",
-        // args of declared functions should always have typing or at least any as a type.
         "noImplicitAny": true,
         "target": "es5",
         "outDir": "./build/",
         "sourceMap": true,
-        "allowJs": true
+        "allowJs": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true
     },
     "include": [
         "src/**/*"
     ],
     "exclude": [
         "node_modules",
-        "**/*.spec.ts"
+        "**/*.spec.ts",
+        "**/*.test.ts",
     ]
 }

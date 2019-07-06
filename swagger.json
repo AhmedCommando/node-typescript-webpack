@@ -1,0 +1,83 @@
+{
+	"basePath": "/",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"HelloWorldInterface": {
+			"properties": {
+				"message": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"message"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "node-typescript-webpack-boilerplate",
+		"version": "1.0.0",
+		"description": "a boilerplate using node with typescript and webpack",
+		"license": {
+			"name": "MIT"
+		}
+	},
+	"paths": {
+		"/HelloWorld": {
+			"get": {
+				"operationId": "Hello",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/HelloWorldInterface"
+						}
+					}
+				},
+				"tags": [
+					"HelloWorldController"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/HelloWorld/{name}": {
+			"get": {
+				"operationId": "HelloName",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/HelloWorldInterface"
+						}
+					}
+				},
+				"tags": [
+					"HelloWorldController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "name",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}

@@ -1,38 +1,50 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import * as swaggerUI from 'swagger-ui-express';
+
+import { RegisterRoutes } from './router/routes';
+import logger from './utils/winston-logger';
+import './controller/helloWorldController';
 
 // Creates and configures an ExpressJS web server.
 class App {
   // ref to Express instance
-  express: express.Application;
+  express: express.Express;
 
   // Run configuration methods on the Express instance.
   constructor() {
       // test
     this.express = express();
+    this.express.disable('x-powered-by');
+
     this.middleware();
     this.routes();
+    this.startSwagger();
   }
 
   // Configure Express middleware.
   private middleware(): void {
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
+    this.express.disable('x-powered-by');
   }
 
   // Configure API endpoints.
   private routes(): void {
-    /* This is just to get up and running, and to make sure what we've got is
-     * working so far. This function will change when we start to add more
-     * API endpoints */
-    const router = express.Router();
-    // placeholder route handler
-    router.get('/', (req: express.Request, res: express.Response, next: {}) => {
-      res.json({
-        message: 'Hello World!'
-      });
-    });
-    this.express.use('/', router);
+    // use generated routes by tsoa for swagger-ui
+    RegisterRoutes(this.express);
+  }
+
+  /**
+   * start swagger-ui express server and setup the documentation to be served
+   */
+  private startSwagger(): void {
+    try {
+      const swaggerDoc = require('../swagger.json');
+      this.express.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+    } catch (error) {
+      logger.error(error);
+    }
   }
 
 }
