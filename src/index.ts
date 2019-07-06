@@ -15,7 +15,6 @@ class App {
   constructor() {
       // test
     this.express = express();
-    this.express.disable('x-powered-by');
 
     this.middleware();
     this.routes();
