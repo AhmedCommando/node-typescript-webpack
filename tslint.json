@@ -5,10 +5,8 @@
       "tslint-eslint-rules"
     ],
     "rulesDirectory": [
-      "node_modules/codelyzer",
       "node_modules/tslint-origin-ordered-imports-rule/dist",
       "node_modules/tslint-consistent-codestyle/rules",
-      "node_modules/tslint-rxjs-subject-restrictions-rule/dist",
       "node_modules/tslint-defocus/dist"
     ],
     "rules": {
